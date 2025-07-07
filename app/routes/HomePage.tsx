@@ -11,7 +11,7 @@ import Testimonials from '../components/Testimonials';
 import FAQ from '../components/FAQ';
 import Footer from '../components/Footer';
 
-export default function MarketingPage(props: { disableCustomTheme?: boolean }) {
+export default function HomePage(props: { disableCustomTheme?: boolean }) {
   return (
     <div {...props}>
       <CssBaseline enableColorScheme />
