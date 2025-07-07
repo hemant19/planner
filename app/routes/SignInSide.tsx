@@ -3,11 +3,13 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Stack from '@mui/material/Stack';
 import SignInCard from '../components/SignInCard';
 import Content from '../components/Content';
+import AppAppBar from '../components/AppAppBar';
 
 export default function SignInSide(props: { disableCustomTheme?: boolean }) {
   return (
     <div {...props}>
       <CssBaseline enableColorScheme />
+      <AppAppBar />
       <Stack
         direction="column"
         component="main"
@@ -15,7 +17,7 @@ export default function SignInSide(props: { disableCustomTheme?: boolean }) {
           {
             justifyContent: 'center',
             height: 'calc((1 - var(--template-frame-height, 0)) * 100%)',
-            marginTop: 'max(40px - var(--template-frame-height, 0px), 0px)',
+            marginTop: 'max(100px - var(--template-frame-height, 0px), 0px)',
             minHeight: '100%',
           },
           (theme) => ({

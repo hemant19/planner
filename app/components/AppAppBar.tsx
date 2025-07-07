@@ -13,6 +13,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { Typography } from '@mui/material';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import logo from '../assets/financial-planner-logo.png';
+import { Link } from 'react-router';
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: 'flex',
@@ -51,12 +52,15 @@ export default function AppAppBar() {
       <Container maxWidth="lg">
         <StyledToolbar variant="dense" disableGutters>
           <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', gap: 3, px: 0 }}>
-            <Box sx={{ display:  'flex' }}>
-              <img src={logo} alt="FP" width="48" height="48" />
-              <Typography color="primary" variant="h5" margin="auto">
-                AI Financial Advisor
-              </Typography>
-            </Box>
+            <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>  
+              <Box sx={{ display:  'flex' }}>
+                <img src={logo} alt="FP" width="48" height="48" />
+                <Typography color="primary" variant="h5" margin="auto">
+                  AI Financial Advisor
+                </Typography>
+              </Box>
+            </Link>
+
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
               <Button variant="text" color="info" size="small">
                 Features
@@ -85,9 +89,11 @@ export default function AppAppBar() {
               alignItems: 'center',
             }}
           >
-            <Button color="primary" variant="text" size="small">
-              Sign in
-            </Button>
+            <Link to="/signin">
+              <Button color="primary" variant="text" size="small">
+                Sign in
+              </Button>
+            </Link>
             <Button color="primary" variant="contained" size="small">
               Sign up
             </Button>
