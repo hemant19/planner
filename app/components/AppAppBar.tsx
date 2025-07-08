@@ -62,24 +62,26 @@ export default function AppAppBar() {
             </Link>
 
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-              <Button variant="text" color="info" size="small">
-                Features
-              </Button>
-              <Button variant="text" color="info" size="small">
-                Testimonials
-              </Button>
+              <Link to={"/#features"}>
+                <Button variant="text" color="info" size="small">
+                  Features
+                </Button>
+              </Link>
+              <Link to={"/#highlights"}>
               <Button variant="text" color="info" size="small">
                 Highlights
               </Button>
+              </Link>
+              <Link to={"/#pricing"}>
               <Button variant="text" color="info" size="small">
                 Pricing
               </Button>
-              <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }}>
-                FAQ
-              </Button>
-              <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }}>
-                Blog
-              </Button>
+              </Link>
+              <Link to={"/#faq"}>
+                <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }}>
+                  FAQ
+                </Button>
+              </Link>
             </Box>
           </Box>
           <Box
@@ -124,12 +126,18 @@ export default function AppAppBar() {
                   </IconButton>
                 </Box>
 
-                <MenuItem>Features</MenuItem>
-                <MenuItem>Testimonials</MenuItem>
-                <MenuItem>Highlights</MenuItem>
-                <MenuItem>Pricing</MenuItem>
-                <MenuItem>FAQ</MenuItem>
-                <MenuItem>Blog</MenuItem>
+                <Link to={"/#features"}>
+                  <MenuItem>Features</MenuItem>
+                </Link>
+                <Link to={"/#highlights"}>
+                  <MenuItem>Highlights</MenuItem>
+                </Link>
+                <Link to={"/#pricing"}>
+                  <MenuItem>Pricing</MenuItem>
+                </Link>
+                <Link to={"/#faq"}>
+                  <MenuItem>FAQ</MenuItem>
+                </Link>
                 <Divider sx={{ my: 3 }} />
                 <MenuItem>
                   <Button color="primary" variant="contained" fullWidth>
