@@ -125,7 +125,6 @@ export default function AppAppBar() {
                     <CloseRoundedIcon />
                   </IconButton>
                 </Box>
-
                 <Link to={"/#features"}>
                   <MenuItem>Features</MenuItem>
                 </Link>
