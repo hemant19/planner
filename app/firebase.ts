@@ -1,14 +1,14 @@
 
 import { initializeApp, getApps } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { firebaseConfig } from "./firebase.config";
 
 // Initialize Firebase
-const initializeFirebase = () => {
+const initializeFirebase = async () => {
   if (typeof window !== 'undefined') {
     if (getApps().length === 0) {
       // In the browser, initialize with either local config or hosting config
       if (window.location.hostname === 'localhost') {
+        const { firebaseConfig } = await import("./firebase.config");
         return initializeApp(firebaseConfig);
       } else {
         // The fetch for init.json is handled by the Firebase Hosting script
@@ -22,7 +22,7 @@ const initializeFirebase = () => {
   return null;
 };
 
-const app = initializeFirebase();
+const app = await initializeFirebase();
 const auth = app ? getAuth(app) : null;
 
 export { auth };
