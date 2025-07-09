@@ -1,5 +1,5 @@
 
-import { initializeApp, getApps } from "firebase/app";
+import { initializeApp, getApps, type FirebaseApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 // Initialize Firebase
@@ -22,7 +22,10 @@ const initializeFirebase = async () => {
   return null;
 };
 
-const app = await initializeFirebase();
+let app: FirebaseApp | null;
+initializeFirebase().then((app) => {
+  app = app;
+});
 const auth = app ? getAuth(app) : null;
 
 export { auth };
