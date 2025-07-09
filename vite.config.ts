@@ -5,7 +5,7 @@ import devtoolsJson from "vite-plugin-devtools-json";
 
 export default defineConfig({
   define: {
-    "process.env": process.env,
+    "process.env.TEMPLATE_IMAGE_URL": JSON.stringify(process.env.TEMPLATE_IMAGE_URL),
   },
   plugins: [reactRouter(), tsconfigPaths(), devtoolsJson()],
 });
