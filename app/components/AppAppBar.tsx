@@ -99,7 +99,9 @@ export default function AppAppBar() {
                 <Button color="primary" variant="text" size="small" onClick={signOut}>
                   Sign out
                 </Button>
-                <Avatar alt={user.displayName || undefined} src={user.photoURL || undefined}/>
+                <Link to="/dashboard" style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <Avatar alt={user.displayName || undefined} src={user.photoURL || undefined}/>
+                </Link>
               </>
             ) : (
               <>
