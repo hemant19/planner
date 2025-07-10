@@ -9,4 +9,4 @@
 
 /.gemini/
 *.log
-app/firebase.config.ts
+/app/firebase.config.ts

@@ -10,11 +10,12 @@ import Divider from '@mui/material/Divider';
 import MenuItem from '@mui/material/MenuItem';
 import Drawer from '@mui/material/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Typography } from '@mui/material';
+import { Avatar, Typography } from '@mui/material';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import logo from '../assets/financial-planner-logo.png';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { type User } from 'firebase/auth';
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: 'flex',
@@ -34,7 +35,7 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
 
 export default function AppAppBar() {
   const [open, setOpen] = React.useState(false);
-  const { user, signOut } = useAuth();
+  const { user, signOut }: { user: User | null, signOut: () => void } = useAuth();
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
@@ -94,9 +95,12 @@ export default function AppAppBar() {
             }}
           >
             {user ? (
-              <Button color="primary" variant="text" size="small" onClick={signOut}>
-                Sign out
-              </Button>
+              <>
+                <Button color="primary" variant="text" size="small" onClick={signOut}>
+                  Sign out
+                </Button>
+                <Avatar alt={user.displayName || undefined} src={user.photoURL || undefined}/>
+              </>
             ) : (
               <>
                 <Link to="/signin">
