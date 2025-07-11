@@ -6,3 +6,7 @@
 /build/
 
 *.log
+
+/.gemini/
+*.log
+/app/firebase.config.ts

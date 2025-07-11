@@ -118,3 +118,95 @@ export function GoogleIcon() {
     </SvgIcon>
   );
 }
+
+export function IndiaFlag() {
+  return (
+    <SvgIcon>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600">
+        <rect width="900" height="600" fill="#f93"/>
+        <rect width="900" height="400" y="100" fill="#fff"/>
+        <rect width="900" height="200" y="200" fill="#128807"/>
+        <g transform="translate(450 300)">
+          <circle r="98.5" fill="#000080"/>
+          <circle r="88.5" fill="#fff"/>
+          <circle r="18" fill="#000080"/>
+          <g id="d">
+            <g id="c">
+              <g id="b">
+                <g id="a" fill="#000080">
+                  <circle r="8.5" transform="rotate(7.5) translate(0 -88.5)"/>
+                  <path d="m0-88.5 4.25 10-4.25 10z"/>
+                </g>
+                <use href="#a" transform="rotate(15)"/>
+              </g>
+              <use href="#b" transform="rotate(30)"/>
+            </g>
+            <use href="#c" transform="rotate(60)"/>
+          </g>
+          <use href="#d" transform="rotate(120)"/>
+          <use href="#d" transform="rotate(240)"/>
+        </g>
+      </svg>
+    </SvgIcon>
+  );
+}
+
+export function UsaFlag() {
+  return (
+    <SvgIcon>
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1235" height="650" viewBox="0 0 7410 3900">
+        <path d="M0,0h7410v3900H0" fill="#b31942"/>
+        <path d="M0,450H7410m0,600H0m0,600H7410m0,600H0m0,600H7410m0,600H0" stroke="#FFF" stroke-width="300"/>
+        <path d="M0,0h2964v2100H0" fill="#0a3161"/>
+        <g fill="#FFF">
+          <g id="s18">
+            <g id="s9">
+              <g id="s5">
+                <g id="s4">
+                  <path id="s" d="M247,90 317.534230,307.082039 132.873218,172.917961H361.126782L176.465770,307.082039z"/>
+                  <use xlink:href="#s" y="420"/>
+                  <use xlink:href="#s" y="840"/>
+                  <use xlink:href="#s" y="1260"/>
+                </g>
+                <use xlink:href="#s" y="1680"/>
+              </g>
+              <use xlink:href="#s4" x="247" y="210"/>
+            </g>
+            <use xlink:href="#s9" x="494"/>
+          </g>
+          <use xlink:href="#s18" x="988"/>
+          <use xlink:href="#s9" x="1976"/>
+          <use xlink:href="#s5" x="2470"/>
+        </g>
+      </svg>
+    </SvgIcon>
+  );
+}
+
+export function BrazilFlag() {
+  return (
+    <SvgIcon>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 15">
+        <rect width="22" height="15" fill="#009246"/>
+        <path fill="#ffe600" d="M11 1.8L1.8 7.5 11 13.2 20.2 7.5z"/>
+        <circle cx="11" cy="7.5" r="3.5" fill="#002878"/>
+        <path fill="#fff" d="M11 6.5c-.5 0-.9.4-.9.9s.4.9.9.9.9-.4.9-.9-.4-.9-.9-.9z"/>
+      </svg>
+    </SvgIcon>
+  );
+}
+
+export function GlobeFlag() {
+  return (
+    <SvgIcon>
+      <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="100" cy="100" r="90" fill="#4CAF50"/>
+        <circle cx="100" cy="100" r="88" stroke="#388E3C" stroke-width="2" fill="none"/>
+        <ellipse cx="100" cy="100" rx="40" ry="90" fill="none" stroke="#388E3C" stroke-width="2"/>
+        <ellipse cx="100" cy="100" rx="90" ry="40" fill="none" stroke="#388E3C" stroke-width="2"/>
+        <path d="M100 10C150 30 150 170 100 190C50 170 50 30 100 10Z" fill="none" stroke="#388E3C" stroke-width="2"/>
+        <path d="M100 10C150 30 150 170 100 190C50 170 50 30 100 10Z" transform="rotate(90 100 100)" fill="none" stroke="#388E3C" stroke-width="2"/>
+      </svg>
+    </SvgIcon>
+  );
+}

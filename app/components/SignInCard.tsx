@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import ForgotPassword from './ForgotPassword';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
+ import { useAuth } from '../context/AuthContext';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -33,11 +34,6 @@ const Card = styled(MuiCard)(({ theme }) => ({
 }));
 
 export default function SignInCard() {
-  const [emailError, setEmailError] = React.useState(false);
-  const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
-  const [passwordError, setPasswordError] = React.useState(false);
-  const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
-  const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -47,16 +43,31 @@ export default function SignInCard() {
     setOpen(false);
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    if (emailError || passwordError) {
+  const { signIn, signInWithGoogle, signInWithFacebook } = useAuth();
+
+  const [emailError, setEmailError] = React.useState(false);
+  const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
+  const [passwordError, setPasswordError] = React.useState(false);
+  const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
+  const [open, setOpen] = React.useState(false);
+  
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+
       event.preventDefault();
+    if (!validateInputs()) {
       return;
     }
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    const email = data.get('email') as string;
+    const password = data.get('password') as string;
+
+    try {
+      await signIn(email, password);
+    } catch (error) {
+      // Handle error (e.g., display error message)
+      console.error(error);
+      alert('Failed to sign in. Please check your credentials.');
+    }
   };
 
   const validateInputs = () => {
@@ -175,7 +186,7 @@ export default function SignInCard() {
         <Button
           fullWidth
           variant="outlined"
-          onClick={() => alert('Sign in with Google')}
+          onClick={signInWithGoogle}
           startIcon={<GoogleIcon />}
         >
           Sign in with Google
@@ -183,7 +194,7 @@ export default function SignInCard() {
         <Button
           fullWidth
           variant="outlined"
-          onClick={() => alert('Sign in with Facebook')}
+          onClick={signInWithFacebook}
           startIcon={<FacebookIcon />}
         >
           Sign in with Facebook

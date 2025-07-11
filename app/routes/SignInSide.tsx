@@ -1,11 +1,25 @@
+
 import * as React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Stack from '@mui/material/Stack';
 import SignInCard from '../components/SignInCard';
 import Content from '../components/Content';
 import AppAppBar from '../components/AppAppBar';
+import { useAuth } from '../context/AuthContext';
+import { Navigate } from 'react-router-dom';
+import { CircularProgress } from '@mui/material';
 
 export default function SignInSide(props: { disableCustomTheme?: boolean }) {
+  const { user, loading } = useAuth();
+
+  if (loading) {
+    return <CircularProgress />
+  }
+
+  if (user) {
+    return <Navigate to="/dashboard" />;
+  }
+
   return (
     <div {...props}>
       <CssBaseline enableColorScheme />
@@ -64,3 +78,4 @@ export default function SignInSide(props: { disableCustomTheme?: boolean }) {
     </div>
   );
 }
+

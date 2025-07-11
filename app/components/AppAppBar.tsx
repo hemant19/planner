@@ -10,10 +10,12 @@ import Divider from '@mui/material/Divider';
 import MenuItem from '@mui/material/MenuItem';
 import Drawer from '@mui/material/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Typography } from '@mui/material';
+import { Avatar, Typography } from '@mui/material';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import logo from '../assets/financial-planner-logo.png';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+import { type User } from 'firebase/auth';
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: 'flex',
@@ -33,6 +35,7 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
 
 export default function AppAppBar() {
   const [open, setOpen] = React.useState(false);
+  const { user, signOut }: { user: User | null, signOut: () => void } = useAuth();
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
@@ -91,14 +94,27 @@ export default function AppAppBar() {
               alignItems: 'center',
             }}
           >
-            <Link to="/signin">
-              <Button color="primary" variant="text" size="small">
-                Sign in
-              </Button>
-            </Link>
-            <Button color="primary" variant="contained" size="small">
-              Sign up
-            </Button>
+            {user ? (
+              <>
+                <Button color="primary" variant="text" size="small" onClick={signOut}>
+                  Sign out
+                </Button>
+                <Link to="/dashboard" style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <Avatar alt={user.displayName || undefined} src={user.photoURL || undefined}/>
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link to="/signin">
+                  <Button color="primary" variant="text" size="small">
+                    Sign in
+                  </Button>
+                </Link>
+                <Button color="primary" variant="contained" size="small">
+                  Sign up
+                </Button>
+              </>
+            )}
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' }, gap: 1 }}>
             <IconButton aria-label="Menu button" onClick={toggleDrawer(true)}>
@@ -138,16 +154,26 @@ export default function AppAppBar() {
                   <MenuItem>FAQ</MenuItem>
                 </Link>
                 <Divider sx={{ my: 3 }} />
-                <MenuItem>
-                  <Button color="primary" variant="contained" fullWidth>
-                    Sign up
-                  </Button>
-                </MenuItem>
-                <MenuItem>
-                  <Button color="primary" variant="outlined" fullWidth>
-                    Sign in
-                  </Button>
-                </MenuItem>
+                {user ? (
+                  <MenuItem>
+                    <Button color="primary" variant="contained" fullWidth onClick={signOut}>
+                      Sign out
+                    </Button>
+                  </MenuItem>
+                ) : (
+                  <>
+                    <MenuItem>
+                      <Button color="primary" variant="contained" fullWidth>
+                        Sign up
+                      </Button>
+                    </MenuItem>
+                    <MenuItem>
+                      <Button color="primary" variant="outlined" fullWidth>
+                        Sign in
+                      </Button>
+                    </MenuItem>
+                  </>
+                )}
               </Box>
             </Drawer>
           </Box>

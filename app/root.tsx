@@ -1,3 +1,5 @@
+import * as React from 'react';
+import { AuthProvider } from './context/AuthContext';
 import {
   isRouteErrorResponse,
   Links,
@@ -27,8 +29,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function App() {
-  return <Outlet />;
+
+export default function Root() {
+  return (
+    <AuthProvider>
+      <Outlet />
+    </AuthProvider>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
