@@ -1,4 +1,3 @@
-
 export interface Asset {
   id: string;
   type: AssetType;
@@ -44,3 +43,4 @@ export interface RSU extends Asset {
 export interface RealEstate extends Asset {
   address: string;
 }
+// Added a comment to force re-compilation

@@ -30,10 +30,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 
+import LoadingSpinner from './components/LoadingSpinner';
+
 export default function Root() {
   return (
     <AuthProvider>
-      <Outlet />
+      <Outlet fallback={<LoadingSpinner />} />
     </AuthProvider>
   );
 }

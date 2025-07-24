@@ -11,6 +11,8 @@ import MenuContent from './MenuContent';
 import OptionsMenu from './OptionsMenu';
 import { useAuth } from '../context/AuthContext';
 import { type User } from 'firebase/auth';
+import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -31,7 +33,7 @@ interface SideMenuMobileProps {
 }
 
 export default function SideMenuMobile({ open, toggleDrawer }: SideMenuMobileProps) {
-  const { user }: { user: User | null } = useAuth();
+  const { user, signOut }: { user: User | null, signOut: () => void } = useAuth();
   return (
     <Drawer
       anchor="right"
@@ -65,32 +67,54 @@ export default function SideMenuMobile({ open, toggleDrawer }: SideMenuMobilePro
       >
         <MenuContent />
       </Box>
-      <Stack
-        direction="row"
-        sx={{
-          p: 2,
-          gap: 1,
-          alignItems: 'center',
-          borderTop: '1px solid',
-          borderColor: 'divider',
-        }}
-      >
-        <Avatar
-          sizes="small"
-          alt={user?.displayName || ''}
-          src={user?.photoURL || ''}
-          sx={{ width: 36, height: 36 }}
-        />
-        <Box sx={{ mr: 'auto' }}>
-          <Typography variant="body2" sx={{ fontWeight: 500, lineHeight: '16px' }}>
-            {user?.displayName}
-          </Typography>
-          <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-            {user?.email}
-          </Typography>
-        </Box>
-        <OptionsMenu />
-      </Stack>
+      {user ? (
+        <Stack
+          direction="row"
+          sx={{
+            p: 2,
+            gap: 1,
+            alignItems: 'center',
+            borderTop: '1px solid',
+            borderColor: 'divider',
+          }}
+        >
+          <Avatar
+            sizes="small"
+            alt={user?.displayName || ''}
+            src={user?.photoURL || ''}
+            sx={{ width: 36, height: 36 }}
+          />
+          <Box sx={{ mr: 'auto' }}>
+            <Typography variant="body2" sx={{ fontWeight: 500, lineHeight: '16px' }}>
+              {user?.displayName}
+            </Typography>
+            <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+              {user?.email}
+            </Typography>
+          </Box>
+          <OptionsMenu />
+        </Stack>
+      ) : (
+        <Stack
+          direction="column"
+          sx={{
+            p: 2,
+            gap: 1,
+            alignItems: 'center',
+            borderTop: '1px solid',
+            borderColor: 'divider',
+          }}
+        >
+          <Link to="/signin" style={{ width: '100%' }}>
+            <Button color="primary" variant="outlined" fullWidth>
+              Sign in
+            </Button>
+          </Link>
+          <Button color="primary" variant="contained" fullWidth>
+            Sign up
+          </Button>
+        </Stack>
+      )}
     </Drawer>
   );
 }
