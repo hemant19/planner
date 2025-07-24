@@ -16,6 +16,7 @@ import logo from '../assets/financial-planner-logo.png';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { type User } from 'firebase/auth';
+import SideMenuMobile from './SideMenuMobile';
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: 'flex',
@@ -120,62 +121,7 @@ export default function AppAppBar() {
             <IconButton aria-label="Menu button" onClick={toggleDrawer(true)}>
               <MenuIcon />
             </IconButton>
-            <Drawer
-              anchor="top"
-              open={open}
-              onClose={toggleDrawer(false)}
-              PaperProps={{
-                sx: {
-                  top: 'var(--template-frame-height, 0px)',
-                },
-              }}
-            >
-              <Box sx={{ p: 2, backgroundColor: 'background.default' }}>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'flex-end',
-                  }}
-                >
-                  <IconButton onClick={toggleDrawer(false)}>
-                    <CloseRoundedIcon />
-                  </IconButton>
-                </Box>
-                <Link to={"/#features"}>
-                  <MenuItem>Features</MenuItem>
-                </Link>
-                <Link to={"/#highlights"}>
-                  <MenuItem>Highlights</MenuItem>
-                </Link>
-                <Link to={"/#pricing"}>
-                  <MenuItem>Pricing</MenuItem>
-                </Link>
-                <Link to={"/#faq"}>
-                  <MenuItem>FAQ</MenuItem>
-                </Link>
-                <Divider sx={{ my: 3 }} />
-                {user ? (
-                  <MenuItem>
-                    <Button color="primary" variant="contained" fullWidth onClick={signOut}>
-                      Sign out
-                    </Button>
-                  </MenuItem>
-                ) : (
-                  <>
-                    <MenuItem>
-                      <Button color="primary" variant="contained" fullWidth>
-                        Sign up
-                      </Button>
-                    </MenuItem>
-                    <MenuItem>
-                      <Button color="primary" variant="outlined" fullWidth>
-                        Sign in
-                      </Button>
-                    </MenuItem>
-                  </>
-                )}
-              </Box>
-            </Drawer>
+            <SideMenuMobile open={open} toggleDrawer={toggleDrawer} />
           </Box>
         </StyledToolbar>
       </Container>

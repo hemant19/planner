@@ -9,10 +9,11 @@ import Pricing from '../components/Pricing';
 import Features from '../components/Features';
 import FAQ from '../components/FAQ';
 import Footer from '../components/Footer';
+import AppTheme from '../shared-theme/AppTheme';
 
 export default function HomePage(props: { disableCustomTheme?: boolean }) {
   return (
-    <div {...props}>
+    <AppTheme {...props}>
       <CssBaseline enableColorScheme />
 
       <AppAppBar />
@@ -30,6 +31,6 @@ export default function HomePage(props: { disableCustomTheme?: boolean }) {
         <Divider />
         <Footer />
       </div>
-    </div>
+    </AppTheme>
   );
 }
